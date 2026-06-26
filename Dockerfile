@@ -18,6 +18,7 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=8090
+ENV HOSTNAME=0.0.0.0
 ENV TOKEN_STORE_PATH=/data/active-account.json
 
 # non-root user
