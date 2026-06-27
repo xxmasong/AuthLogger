@@ -14,7 +14,7 @@ app is only the flexible **Google** identity layer.
 Browser ──► gauth (tailnet-only)
    "Login with Google" → Google OAuth (offline + consent → refresh token)
    stores ACTIVE account at /data/active-account.json (Docker volume)
-   on switch → PATCH n8n credential via n8n REST API
+   on switch → create/update n8n credential via n8n REST API
         │
         ▼
    n8n native Google nodes  ──► Drive / Sheets / Docs / Calendar / Gmail …
@@ -37,7 +37,9 @@ Browser ──► gauth (tailnet-only)
 
 Copy `.env.example` → set in Coolify's environment. Key vars:
 `GOOGLE_CLIENT_ID/SECRET/REDIRECT_URI`, `APP_BASE_URL`, `TOKEN_API_SECRET`,
-and optionally `N8N_API_URL/API_KEY/CRED_ID` to auto-update the n8n credential.
+and optionally `N8N_API_URL/API_KEY` to auto-update the n8n credential. If
+`N8N_CRED_ID` is blank, gauth creates the Google OAuth2 credential on the first
+successful Google login and stores the created id in the persistent token store.
 
 ## Deploy (Coolify + GitHub)
 
